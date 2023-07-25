@@ -3,8 +3,8 @@
     $itemCount = 0;
 @endphp
 @component('mail::message')
-User {{$request['user_name']}} with ID {{$request['user_id']}} has just updated invoice at {{$request['date']}} <br>
-@foreach ($request['items'] as $item)
+User {{$data['user_name']}} with ID {{$data['user_id']}} has just updated invoice at {{$data['date']}} <br>
+@foreach ($data['items'] as $item)
 @php
     $totalPrice += $item['price'];
     $itemCount++;

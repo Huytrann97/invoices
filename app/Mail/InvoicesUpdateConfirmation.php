@@ -7,18 +7,19 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
-use App\Http\Requests\StoreInvoiceRequest;
 
 class InvoicesUpdateConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
-    public $request;
+
+    public array $data;
+
     /**
      * Create a new message instance.
      */
-    public function __construct(array $request)
+    public function __construct(array $data)
     {
-        $this->request = $request;
+        $this->data = $data;
     }
 
     /**

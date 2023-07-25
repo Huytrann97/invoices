@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Listeners;
+
 use App\Mail\InvoicesUpdateConfirmation;
 use App\Mail\InvoiceUpdateNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Events\NewInvoiceCreatedEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Infrastructure\Eloquent\EloquentUser;
 
 class SendInvoiceCreatedNotification implements ShouldQueue
 {
@@ -13,12 +14,16 @@ class SendInvoiceCreatedNotification implements ShouldQueue
 
     public function handle(NewInvoiceCreatedEvent $event)
     {
-        $request = $event->request;
-        $userName = EloquentUser::firstWhere('id', $request['user_id'])->name;
-        $userEmail = EloquentUser::firstWhere('id', $request['user_id'])->email;
-        $request['user_name']=$userName;
-        Mail::to('huy@gmail.com')->send(new InvoicesUpdateConfirmation($request));
+        $data = $event->requestToArray;
 
-        Mail::to('admin@gmail.com')->send(new InvoiceUpdateNotification($request));
+        $user = $event->user;
+        $userName = $user->name;
+        $email = $user->email;
+
+        $data['user_name'] = $userName;
+
+        Mail::to($email)->send(new InvoicesUpdateConfirmation($data));
+
+        Mail::to(env("ADMIN_EMAIL"))->send(new InvoiceUpdateNotification($data));
     }
 }

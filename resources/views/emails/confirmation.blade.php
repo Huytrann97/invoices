@@ -3,11 +3,11 @@
 @endphp
 
 @component('mail::message')
-Dear    {{$request['user_name']}} <br>
-Your {{$request['date']}} invoices has been updated <br> <br>
+Dear    {{$data['user_name']}} <br>
+Your {{$data['date']}} invoices has been updated <br> <br>
 Here is what you've updated: <br>
 Items: <br>
-@foreach ($request['items'] as $item)
+@foreach ($data['items'] as $item)
 @php
     $totalPrice += $item['price'];
 @endphp
@@ -15,5 +15,5 @@ Items: <br>
   Price: {{ $item['price'] }} <br>
 @endforeach
 Total : {{$totalPrice}} <br>
-{{-- {{dd($request['items'])}} --}}
+{{-- {{dd($data['items'])}} --}}
 @endcomponent

@@ -20,6 +20,13 @@ class EloquentInvoice extends Model
         'payment_url',
     ];
 
+    protected function scopeSearchByUserId($query, int $userId)
+    {
+        return $query->where('user_id', $userId);
+    }
 
-
+    protected function scopeSearchByYear($query, string $year)
+    {
+        return $query->where('date', 'like', "$year%");
+    }
 }

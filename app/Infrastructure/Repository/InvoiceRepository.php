@@ -2,31 +2,29 @@
 namespace App\Infrastructure\Repository;
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
-use App\Infrastructure\Eloquent\EloquentUser;
 use App\Infrastructure\Eloquent\EloquentInvoice;
 use App\Domain\Invoice\InvoiceRepositoryInterface;
-use Illuminate\Http\JsonResponse;
+use App\Infrastructure\Eloquent\EloquentUser;
 use Illuminate\Support\Collection;
 
 class InvoiceRepository implements InvoiceRepositoryInterface
 {
-    public function getInvoiceInformation(string $year, int $userId)
+    public function listInvoicesByYear(string $year, int $userId): Collection
     {
-        return EloquentInvoice::where('user_id', $userId)
-            ->where('date', 'like', "$year%")
+        return EloquentInvoice::searchByUserId($userId)
+            ->searchByYear($year)
             ->get()
             ->groupBy(function ($invoice) {
                 return Carbon::parse($invoice->date)->format('m');
             });
     }
 
-    public function findNameByUserid(int $userId)
+    public function findUser(int $userId): ?EloquentUser
     {
         return EloquentUser::firstWhere('id', $userId);
     }
 
-    public function storeInvoicesToDb(int $userId, string $fullName, string $name, string $date, int $price)
+    public function saveInvoices(int $userId, string $fullName, string $name, string $date, int $price): EloquentInvoice
     {
         return EloquentInvoice::create([
             'user_id' => $userId,
