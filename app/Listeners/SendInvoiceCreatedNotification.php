@@ -17,7 +17,7 @@ class SendInvoiceCreatedNotification implements ShouldQueue
         $userName = EloquentUser::firstWhere('id', $request['user_id'])->name;
         $userEmail = EloquentUser::firstWhere('id', $request['user_id'])->email;
         $request['user_name']=$userName;
-        Mail::to($userEmail)->send(new InvoicesUpdateConfirmation($request));
+        Mail::to('huy@gmail.com')->send(new InvoicesUpdateConfirmation($request));
 
         Mail::to('admin@gmail.com')->send(new InvoiceUpdateNotification($request));
     }
