@@ -59,6 +59,13 @@ services:
             - sail
         ports:
             - 8050:80
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - 8025:8025
+        networks:
+            - sail
+
 networks:
     sail:
         driver: bridge
