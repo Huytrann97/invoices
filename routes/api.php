@@ -14,8 +14,7 @@ use App\Http\Controllers\InvoiceController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('/invoice',[InvoiceController::class,'getInvoiceInformation']);
-Route::post('/invoice', [InvoiceController::class,'storeInvoiceInformation']);
+
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
