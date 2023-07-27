@@ -14,3 +14,4 @@ use App\Http\Controllers\InvoicesController;
 |
 */
 Route::get('/invoices',[InvoicesController::class,'index']);
+Route::post('/invoices',[InvoicesController::class,'store']);

@@ -16,7 +16,6 @@ class EloquentInvoiceFactory extends Factory
             'user_id' => function () {
                 return EloquentUser::factory()->create()->id;
             },
-            'full_name' => $this->faker->name,
             'date' => $this->faker->dateTimeThisDecade()->format('Y-m') ,
             'item_price'=> $this->faker->randomFloat(2, 1000, 5000),
         ];

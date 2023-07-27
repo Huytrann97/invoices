@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
         $users->each(function ($user) {
             EloquentInvoice::factory()->count(10)->create([
                 'user_id' => $user->id,
-                'full_name' => $user->name,
                 'item_name' => 'Item Name',
             ]);
         });

@@ -25,5 +25,15 @@ class InvoiceRepository implements InvoiceRepositoryInterface
     {
         return EloquentUser::firstWhere('id', $userId);
     }
+
+    public function saveInvoices(int $userId, string $name, string $date, int $price): EloquentInvoice
+    {
+        return EloquentInvoice::create([
+            'user_id' => $userId,
+            'item_name' => $name,
+            'date' => $date,
+            'item_price' => $price,
+        ]);
+    }
 }
 

@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('full_name');
             $table->string('item_name');
             $table->string('date');
-            $table->string('item_price');
+            $table->string('item_price')->nullable();
             $table->string('payment_url')->nullable();
             $table->timestamps();
         });
