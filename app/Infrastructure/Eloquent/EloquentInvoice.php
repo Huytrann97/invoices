@@ -13,10 +13,9 @@ class EloquentInvoice extends Model
     protected $table = 'invoices';
     protected $fillable = [
         'user_id',
-        'name',
         'item_name',
         'date',
-        'price',
+        'item_price',
         'payment_url',
     ];
 
