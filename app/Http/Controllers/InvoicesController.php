@@ -21,4 +21,15 @@ class InvoicesController extends Controller
         $invoices = $this->invoiceService->listInvoicesByYear($year, $userId);
         return response()->json($invoices, 200);
     }
+    
+    public function searchByPrice(Request $request)
+    {
+        $request->validate([
+            'price' => 'required|numeric',
+        ]);
+    
+        $price = $request->price;
+        $invoices = $this->invoiceService->searchByPrice($price);
+        return response()->json($invoices, 200);
+    }
 }
