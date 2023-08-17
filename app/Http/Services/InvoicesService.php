@@ -17,5 +17,10 @@ class InvoicesService
     {
         return $this->invoiceRepository->listInvoicesByYear($year, $userId);
     }
+    
+    public function filterByPrice($price)
+    {
+        return $this->invoiceRepository->filterByPrice($price);
+    }
 }
 
