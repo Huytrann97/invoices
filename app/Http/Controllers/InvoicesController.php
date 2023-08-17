@@ -21,4 +21,11 @@ class InvoicesController extends Controller
         $invoices = $this->invoiceService->listInvoicesByYear($year, $userId);
         return response()->json($invoices, 200);
     }
+    
+    public function filterByPrice(Request $request)
+    {
+        $price = $request->header('price');
+        $invoices = $this->invoiceService->filterByPrice($price);
+        return response()->json($invoices, 200);
+    }
 }
