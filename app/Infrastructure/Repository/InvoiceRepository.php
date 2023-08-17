@@ -25,5 +25,10 @@ class InvoiceRepository implements InvoiceRepositoryInterface
     {
         return EloquentUser::firstWhere('id', $userId);
     }
+    
+    public function searchByPrice(float $price): Collection
+    {
+        return EloquentInvoice::where('price', $price)->get();
+    }
 }
 
