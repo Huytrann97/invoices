@@ -11,5 +11,14 @@ interface InvoiceRepositoryInterface
 
     public function findUser(int $userId): ?EloquentUser;
 
+    public function getAll(): Collection;
+
+    public function getById(int $id): ?EloquentUser;
+
+    public function create(array $data): ?EloquentUser;
+
+    public function update(int $id, array $data): bool;
+
+    public function delete(int $id): bool;
 }
 
